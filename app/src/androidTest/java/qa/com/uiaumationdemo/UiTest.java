@@ -12,6 +12,7 @@ import android.content.Intent;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import java.lang.Thread;
 
 @RunWith(AndroidJUnit4.class)
  public class UiTest  {
@@ -37,7 +38,10 @@ import org.junit.runner.RunWith;
 
          @Test
          public void testDemo() throws UiObjectNotFoundException {
-
+            // Thread.sleep(2000);
+             UiObject obj_1 = new UiObject(new UiSelector().resourceId("com.qunar.im.ui:id/self_gravatar"));
+             obj_1.click();
+          //   Thread.sleep(2000);
 
           }
     }
