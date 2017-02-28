@@ -1,8 +1,10 @@
 package qa.com.uiaumationdemo;
 
+import android.os.RemoteException;
 import android.support.test.uiautomator.UiAutomatorTestCase;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject;
+import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.support.test.InstrumentationRegistry;
@@ -11,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import java.lang.Thread;
 
@@ -29,6 +32,12 @@ import java.lang.Thread;
         Device.openApp("com.cebbank.bankebb");
     }
 
+    @After
+    public void after() throws RemoteException {
+        Device.closeApp();
+    }
+
+
 //    public void openApp(String packageName) {
 //        Context context = InstrumentationRegistry.getInstrumentation().getContext();
 //        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
@@ -38,10 +47,18 @@ import java.lang.Thread;
 
          @Test
          public void testDemo() throws UiObjectNotFoundException {
-            // Thread.sleep(2000);
-             UiObject obj_1 = new UiObject(new UiSelector().resourceId("com.qunar.im.ui:id/self_gravatar"));
-             obj_1.click();
-          //   Thread.sleep(2000);
-
+             UiDevice mDevice =  Device.get_device();
+             ElementUtil.wait_element_present(new UiSelector().resourceId("com.cebbank.bankebb:id/gv_item_tv_name1"));
+             ElementUtil.wait_element_present(new UiSelector().text("登录"));
           }
+
+    @Test
+    public void testDemo1() throws UiObjectNotFoundException {
+        UiDevice mDevice =  Device.get_device();
+        ElementUtil.wait_element_present(new UiSelector().resourceId("com.cebbank.bankebb:id/gv_item_tv_name1"));
+        ElementUtil.wait_element_present(new UiSelector().text("登录"));
+        ElementUtil.wait_element_present(new UiSelector().resourceId("com.qunar.im.ui:id/self_gravatar"));
+    }
+
+
     }
