@@ -16,25 +16,25 @@ import java.lang.Thread;
 
 @RunWith(AndroidJUnit4.class)
  public class UiTest  {
-    private UiDevice mDevice;
 
     @Before
     public void before() {
         // Initialize UiDevice instance
-        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-
+        Device.set_device(UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()));
+        UiDevice mDevice =  Device.get_device();
+        String packAgeName = mDevice.getCurrentPackageName();
         // Start from the home screen
         mDevice.pressHome();
         // open app
-        openApp("com.qunar.im.qchat");
+        Device.openApp("com.cebbank.bankebb");
     }
 
-    public void openApp(String packageName) {
-        Context context = InstrumentationRegistry.getInstrumentation().getContext();
-        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-    }
+//    public void openApp(String packageName) {
+//        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+//        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        context.startActivity(intent);
+//    }
 
          @Test
          public void testDemo() throws UiObjectNotFoundException {
